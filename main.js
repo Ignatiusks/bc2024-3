@@ -25,7 +25,11 @@ if (!fs.existsSync(inputFilePath)) {
 
 const inputData = fs.readFileSync(inputFilePath, 'utf8');
 const jsonData = JSON.parse(inputData);
-const result = JSON.stringify(jsonData, null, 2);
+
+let result = '';
+jsonData.forEach(item => {
+  result += `${item.exchangedate}:${item.rate}\n`;
+});
 
 if (!options.output && !options.display) {
   process.exit(0);
